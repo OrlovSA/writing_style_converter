@@ -1,0 +1,6 @@
+README.md
+setup.py
+writing_style_converter.egg-info/PKG-INFO
+writing_style_converter.egg-info/SOURCES.txt
+writing_style_converter.egg-info/dependency_links.txt
+writing_style_converter.egg-info/top_level.txt
