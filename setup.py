@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='writing_style_converter',
-    version='1.0.0',
+    version='1.0.1',
     packages=find_packages(),
     author='Stepan Orlov',
     description='A library for converting naming styles in Python code.',

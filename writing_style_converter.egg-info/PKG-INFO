@@ -1,7 +1,10 @@
 Metadata-Version: 2.1
 Name: writing-style-converter
-Version: 1.0.0
-Summary: Telegram @Orlov_SA
+Version: 1.0.1
+Summary: A library for converting naming styles in Python code.
 Author: Stepan Orlov
 Author-email: stepan.nadym@gmail.com
 License: MIT License
+Description-Content-Type: text/markdown
+
+The writing_style_converter library provides convenient tools for converting between various naming styles (e.g., snake_case, kebab_case, camel_case, pascal_case) in Python code. Streamline the process of handling different naming conventions in models, APIs, and more. Check out the [GitHub repository](https://github.com/OrlovSA/writing_style_converter/blob/main/README.md) for usage examples and detailed documentation. Telegram @Orlov_SA
