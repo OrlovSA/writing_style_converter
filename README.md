@@ -58,14 +58,25 @@ WSC.wsc_str("isAccepted", "kebab_case")
 ### Converting Pydantic Models
 
 ```python
-from pydantic import BaseModel
+from pydantic import BaseModel, root_validator
 import WSC
 
+
 class DataSnake(BaseModel):
+    # is_accepted: bool = Field(alias="isAccepted")
+    # patient_id: str = Field(alias="patientId")
+    # client_id: int = Field(alias="clientId")
+    # ...
+    # or
     is_accepted: bool 
     patient_id: str 
     client_id: int
 
+    @root_validator(pre=True)
+    def _pre(cls, value):
+        return WSC.wsc_dict(value, "snake_case")
+
+        
 data_snake_case = DataSnake(**camel_case_in) 
 # DataSnake(is_accepted=True, patient_id='test', client_id=123)
 

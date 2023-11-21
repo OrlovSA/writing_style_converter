@@ -1,0 +1,16 @@
+[project]
+name = "writing_style_converter"
+version = "0.0.1"
+authors = [
+  {name="Stepan Orlov", email="stepan.nadym@gmail.com", telegram="@Orlov_SA"},
+]
+description='A library for converting naming styles in Python code.'
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Homepage = "https://github.com/OrlovSA/writing_style_converter"

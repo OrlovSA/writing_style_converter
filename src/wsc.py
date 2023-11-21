@@ -1,6 +1,6 @@
 from enum import Enum
-from preparation_style import PreparationStyle
-from factory_style import FactoryStyle
+from src.preparation_style import PreparationStyle
+from src.factory_style import FactoryStyle
 
 
 class WSCEnum(str, Enum):
@@ -11,10 +11,11 @@ class WSCEnum(str, Enum):
 
 
 class WSC:
+
     @classmethod
-    def wsc_dict(cls, data: dict, case: WSCEnum) -> dict:
+    def wsc_dict(cls, data: dict, case: WSCEnum = "snake_case") -> dict:
         if not isinstance(data, dict):
-            raise Exception(f"{data=} is not dict")
+            raise ValueError(f"{data=} is not dict")
         
         result_dict = dict()
         for key, value in data.items():
@@ -26,9 +27,9 @@ class WSC:
     
 
     @classmethod
-    def wsc_str(cls, data: str, case: WSCEnum) -> str:
+    def wsc_str(cls, data: str, case: WSCEnum = "snake_case") -> str:
         if not isinstance(data, str):
-            raise Exception(f"{data=} is not string")
+            raise ValueError(f"{data=} is not string")
         
         return FactoryStyle._factory_case_keys[case](
             PreparationStyle._preparation(data)
