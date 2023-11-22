@@ -77,16 +77,16 @@ class DataSnake(BaseModel):
         return WSC.wsc_dict(value, WSCEnum.snake_case)
 
     @property
-    def camel_case(cls):
+    def camel_case_dict(cls):
         return WSC.wsc_dict(cls.dict(), WSCEnum.camel_case)
         
 
 data_snake_case = DataSnake(**camel_case_in) 
 # DataSnake(is_accepted=True, patient_id='test', client_id=123)
 
-# Convert Pydantic model to pascal_case dictionary
-WSC.wsc_dict(data_snake_case.dict(), WSCEnum.pascal_case)
-# Output: {'IsAccepted': True, 'PatientId': 'test', 'ClientId': 123}
+# Convert Pydantic model to camel_case dictionary
+data_snake_case.camel_case_dict
+# Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
 ```
 
 ## Installation
