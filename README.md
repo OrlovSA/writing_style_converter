@@ -41,6 +41,14 @@ snake_case_result: dict = WSC.wsc_dict(camel_case_in, WSCEnum.snake_case)
 # Convert back from snake_case to camel_case
 WSC.wsc_dict(snake_case_result, WSCEnum.camel_case)
 # Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
+
+wsc_dict = WSC(camel_case_in)
+
+wsc_dict.snake
+# Output: {'is_accepted': True, 'patient_id': 'test', 'client_id': 123}
+
+wsc_dict.camel
+# Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
 ```
 
 ### Converting Strings

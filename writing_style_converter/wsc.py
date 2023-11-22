@@ -1,4 +1,5 @@
 from enum import Enum
+
 from .preparation_style import PreparationStyle
 from .factory_style import FactoryStyle
 
@@ -14,7 +15,13 @@ class WSCEnum(str, Enum):
 
 
 class WSC:
+    def __init__(self, value: dict) -> None:
+        if not isinstance(value, dict):
+            raise ValueError(f"{value=} is not dict")
+        
+        self.value = value
 
+    
     @classmethod
     def wsc_dict(cls, data: dict, case: WSCEnum = WSCEnum.snake_case) -> dict:
         if not isinstance(data, dict):
@@ -37,3 +44,24 @@ class WSC:
         return FactoryStyle._factory_case_keys[case](
             PreparationStyle._preparation(data)
         )
+
+
+    @property
+    def snake(cls) -> dict:
+        return cls.wsc_dict(cls.value)
+    
+
+    @property
+    def kebab(cls) -> dict:
+        return cls.wsc_dict(cls.value, WSCEnum.kebab_case)
+    
+
+    @property
+    def camel(cls) -> dict:
+        return cls.wsc_dict(cls.value, WSCEnum.camel_case)
+    
+
+    @property
+    def pascal(cls) -> dict:
+        return cls.wsc_dict(cls.value, WSCEnum.pascal_case)
+

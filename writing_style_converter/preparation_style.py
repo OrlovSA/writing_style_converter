@@ -10,11 +10,11 @@ class PreparationStyle:
     def _preparation_kebab_case(value: str) -> List[str]:
         return [v.lower() for v in  value.split("-")]
 
-    def _preparation_pascal_case(value) -> List[str]:
+    def _preparation_pascal_case(value: str) -> List[str]:
         pattern = re.compile(r'([a-z]+|[A-Z][a-z]*)')
         return  [v.lower() for v in  pattern.findall(value)]
 
-    def _preparation_camel_case(value) -> List[str]:
+    def _preparation_camel_case(value: str) -> List[str]:
         pattern = re.compile(r'([a-z]+|[A-Z][a-z]*)')
         return  [v.lower() for v in  pattern.findall(value)]
 
