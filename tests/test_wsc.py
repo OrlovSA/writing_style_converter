@@ -1,4 +1,4 @@
-from src.wsc import WSC, WSCEnum
+from writing_style_converter import WSC, WSCEnum
 import pytest
 
 

@@ -32,14 +32,14 @@ camel_case_in = {
     "clientId": 123,
 }
 
-import WSC
+from writing_style_converter import WSC, WSCEnum
 
 # Convert dictionary keys from camel_case to snake_case
-snake_case_result: dict = WSC.wsc_dict(camel_case_in, "snake_case") 
+snake_case_result: dict = WSC.wsc_dict(camel_case_in, WSCEnum.snake_case) 
 # Output: {'is_accepted': True, 'patient_id': 'test', 'client_id': 123}
 
 # Convert back from snake_case to camel_case
-WSC.wsc_dict(snake_case_result, "camel_case")
+WSC.wsc_dict(snake_case_result, WSCEnum.camel_case)
 # Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
 ```
 
@@ -47,11 +47,11 @@ WSC.wsc_dict(snake_case_result, "camel_case")
 
 ```python
 # Convert string from camel_case to snake_case
-WSC.wsc_str("isAccepted", "snake_case")
+WSC.wsc_str("isAccepted", WSCEnum.snake_case)
 # Output: 'is_accepted'
 
 # Convert string from camel_case to kebab_case
-WSC.wsc_str("isAccepted", "kebab_case")
+WSC.wsc_str("isAccepted", WSCEnum.kebab_case)
 # Output: 'is-accepted'
 ```
 
@@ -59,7 +59,7 @@ WSC.wsc_str("isAccepted", "kebab_case")
 
 ```python
 from pydantic import BaseModel, root_validator
-import WSC
+from writing_style_converter import WSC, WSCEnum
 
 
 class DataSnake(BaseModel):
@@ -74,14 +74,18 @@ class DataSnake(BaseModel):
 
     @root_validator(pre=True)
     def _pre(cls, value):
-        return WSC.wsc_dict(value, "snake_case")
+        return WSC.wsc_dict(value, WSCEnum.snake_case)
 
+    @property
+    def camel_case(cls):
+        return WSC.wsc_dict(cls.dict(), WSCEnum.camel_case)
         
+
 data_snake_case = DataSnake(**camel_case_in) 
 # DataSnake(is_accepted=True, patient_id='test', client_id=123)
 
 # Convert Pydantic model to pascal_case dictionary
-WSC.wsc_dict(data_snake_case.dict(), "pascal_case")
+WSC.wsc_dict(data_snake_case.dict(), WSCEnum.pascal_case)
 # Output: {'IsAccepted': True, 'PatientId': 'test', 'ClientId': 123}
 ```
 

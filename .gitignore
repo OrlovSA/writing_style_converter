@@ -6,3 +6,4 @@ venv/
 **/.hypothesis/**
 
 .DS_Store
+writing_style_converter.egg-info

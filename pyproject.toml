@@ -1,10 +1,10 @@
 [project]
 name = "writing_style_converter"
-version = "0.0.1"
+version = "0.0.4"
 authors = [
-  {name="Stepan Orlov", email="stepan.nadym@gmail.com", telegram="@Orlov_SA"},
+  {name="Stepan Orlov", email="stepan.nadym@gmail.com"},
 ]
-description='A library for converting naming styles in Python code.'
+description='A library for converting naming styles in Python code. telegram: "@Orlov_SA"'
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
