@@ -23,4 +23,3 @@ async def test_error():
         
     with pytest.raises(ValueError) as _e:
         WSC.wsc_str(DICT_TEST)
-    
