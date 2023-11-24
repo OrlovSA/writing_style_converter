@@ -7,3 +7,4 @@ venv/
 
 .DS_Store
 writing_style_converter.egg-info
+keys.txt

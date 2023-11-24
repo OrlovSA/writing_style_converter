@@ -1,1 +1,2 @@
-from .wsc import WSC, WSCEnum
+from .wsc import WSC
+from .wsc import WSCEnum

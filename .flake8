@@ -1,0 +1,58 @@
+[flake8]
+jobs = auto
+verbose = 0
+quiet = 0
+
+format = default
+count = True
+show-source = True
+statistics = True
+
+output-file = .flake8.log
+tee = True
+
+exclude =
+    .git,
+    __pycache__,
+    .pytest_cache,
+    .mypy_cache,
+    */migrations,
+    */frontend,
+    */fixtures,
+    venv/,
+    env/
+filename =
+    *.py
+
+builtins =
+
+disable-noqa = False
+
+max-line-length = 130
+max-complexity = 11
+hang-closing = True
+
+ignore =
+    E133,
+    E731,
+    F811,
+    W503,
+    E203,
+    W291
+
+select =
+    E,
+    W,
+    F,
+    C
+per-file-ignores =
+    __init__.py:F401,F403
+    settings*.py:F401,F403
+    conftest.py:F401,F403
+
+enable-extensions =
+
+doctests = False
+
+include-in-doctest =
+exclude-in-doctest = W605

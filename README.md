@@ -42,7 +42,11 @@ snake_case_result: dict = WSC.wsc_dict(camel_case_in, WSCEnum.snake_case)
 WSC.wsc_dict(snake_case_result, WSCEnum.camel_case)
 # Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
 
+# Or
 wsc_dict = WSC(camel_case_in)
+
+wsc_dict
+# Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
 
 wsc_dict.snake
 # Output: {'is_accepted': True, 'patient_id': 'test', 'client_id': 123}
@@ -61,40 +65,6 @@ WSC.wsc_str("isAccepted", WSCEnum.snake_case)
 # Convert string from camel_case to kebab_case
 WSC.wsc_str("isAccepted", WSCEnum.kebab_case)
 # Output: 'is-accepted'
-```
-
-### Converting Pydantic Models
-
-```python
-from pydantic import BaseModel, root_validator
-from writing_style_converter import WSC, WSCEnum
-
-
-class DataSnake(BaseModel):
-    # is_accepted: bool = Field(alias="isAccepted")
-    # patient_id: str = Field(alias="patientId")
-    # client_id: int = Field(alias="clientId")
-    # ...
-    # or
-    is_accepted: bool 
-    patient_id: str 
-    client_id: int
-
-    @root_validator(pre=True)
-    def _pre(cls, value):
-        return WSC.wsc_dict(value, WSCEnum.snake_case)
-
-    @property
-    def camel_case_dict(cls):
-        return WSC.wsc_dict(cls.dict(), WSCEnum.camel_case)
-        
-
-data_snake_case = DataSnake(**camel_case_in) 
-# DataSnake(is_accepted=True, patient_id='test', client_id=123)
-
-# Convert Pydantic model to camel_case dictionary
-data_snake_case.camel_case_dict
-# Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
 ```
 
 ## Installation

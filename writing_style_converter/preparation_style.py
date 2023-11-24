@@ -3,20 +3,19 @@ import re
 
 
 class PreparationStyle:
-
     def _preparation_snake_case(value: str) -> List[str]:
-        return [v.lower() for v in  value.split("_")]
+        return [v.lower() for v in value.split("_")]
 
     def _preparation_kebab_case(value: str) -> List[str]:
-        return [v.lower() for v in  value.split("-")]
+        return [v.lower() for v in value.split("-")]
 
     def _preparation_pascal_case(value: str) -> List[str]:
-        pattern = re.compile(r'([a-z]+|[A-Z][a-z]*)')
-        return  [v.lower() for v in  pattern.findall(value)]
+        pattern = re.compile(r"([a-z]+|[A-Z][a-z]*)")
+        return [v.lower() for v in pattern.findall(value)]
 
     def _preparation_camel_case(value: str) -> List[str]:
-        pattern = re.compile(r'([a-z]+|[A-Z][a-z]*)')
-        return  [v.lower() for v in  pattern.findall(value)]
+        pattern = re.compile(r"([a-z]+|[A-Z][a-z]*)")
+        return [v.lower() for v in pattern.findall(value)]
 
     @classmethod
     def _preparation(cls, value: str) -> List[str]:
