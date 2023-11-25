@@ -1,78 +1,39 @@
 # Writing Style Converter
 
 ## Overview
-
-The **writing_style_converter** is a Python utility that addresses the common pain points associated with managing different naming conventions (styles) in Python code, particularly when dealing with models and data structures received from external APIs. The primary motivation behind this tool is to streamline the process of converting between various naming styles, such as "snake_case," "kebab_case," "camel_case," and "pascal_case."
-
-## Key Challenges
-
-1. **Model Aliasing for External APIs:**
-   Writing aliases for models to match the Pythonic style of response from an external API can be cumbersome. This tool simplifies the process of converting between different styles seamlessly.
-
-2. **Swagger Documentation Inconsistency:**
-   When a model, with aliases, is used as an output from an external API and consumed in a FastAPI application, Swagger documentation may become inconsistent. This utility helps maintain consistency by converting models to a specified style.
-
-## Features
-
-### Available Styles
-
-- **"snake_case"**: e.g., `number_of_donuts`
-- **"kebab_case"**: e.g., `number-of-donuts`
-- **"camel_case"**: e.g., `numberOfDonuts`
-- **"pascal_case"**: e.g., `NumberOfDonuts`
-
-## Usage Examples
-
-### Converting Dictionary Keys
+The WSC (**writing_style_converter**) library provides a utility for converting dictionaries between different naming conventions.
 
 ```python
-camel_case_in = {
-    "isAccepted": True,
-    "patientId": "test",
-    "clientId": 123,
+from writing_style_converter import WSC
+
+
+all_case_dict = {
+    "snake_case": {"value_one": 123, "value_two": [{"value_three": 123}]},
+    "kebab-case": {"value-one": 123, "value-two": [{"value-three": 123}]},
+    "camelCase": {"valueOne": 123, "valueTwo": [{"valueThree": 123}]},
+    "PascalCase": {"ValueOne": 123, "ValueTwo": [{"ValueThree": 123}]},
 }
 
-from writing_style_converter import WSC, WSCEnum
+# Example with humidities set to True (default)
+wsc_dict = WSC(all_case_dict)
 
-# Convert dictionary keys from camel_case to snake_case
-snake_case_result: dict = WSC.wsc_dict(camel_case_in, WSCEnum.snake_case) 
-# Output: {'is_accepted': True, 'patient_id': 'test', 'client_id': 123}
+# Access different naming conventions
+print(wsc_instance.value)          # Original dictionary
+print(wsc_instance.snake)          # Converted to snake_case
+print(wsc_instance.kebab)          # Converted to kebab-case
+print(wsc_instance.camel)          # Converted to camelCase
+print(wsc_instance.pascal)         # Converted to PascalCase
 
-# Convert back from snake_case to camel_case
-WSC.wsc_dict(snake_case_result, WSCEnum.camel_case)
-# Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
+# Example with humidities set to False
+wsc_dict_humidities = WSC(all_case_dict, humidities=False)
 
-# Or
-wsc_dict = WSC(camel_case_in)
-
-wsc_dict
-# Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
-
-wsc_dict.snake
-# Output: {'is_accepted': True, 'patient_id': 'test', 'client_id': 123}
-
-wsc_dict.camel
-# Output: {'isAccepted': True, 'patientId': 'test', 'clientId': 123}
+print(wsc_instance_without_humidities.snake)  # Converted to snake_case without humidities
 ```
 
-### Converting Strings
-
-```python
-# Convert string from camel_case to snake_case
-WSC.wsc_str("isAccepted", WSCEnum.snake_case)
-# Output: 'is_accepted'
-
-# Convert string from camel_case to kebab_case
-WSC.wsc_str("isAccepted", WSCEnum.kebab_case)
-# Output: 'is-accepted'
-```
+The **humidities** parameter controls whether the conversion process includes nested dictionaries and lists. When set to **True (default)**, the conversion includes nested structures. When set to False, only the top-level dictionary is converted.
 
 ## Installation
 
 ```bash
 pip install writing_style_converter
 ```
-
-## Acknowledgments
-
-This project is inspired by the need for consistent naming conventions in Python projects, especially when dealing with external APIs and FastAPI applications. The utility provided by **writing_style_converter** aims to simplify the development process and enhance code readability. Contributions and feedback are welcome!
